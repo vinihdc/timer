@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Timer</title>
+</head>
+
+<body>
+    <main>
+        <h1>Timer</h1>
+        <div id="Timer" class="timer">
+            <div class="tempo">
+                <input name="hora" id="hora" value="00" disabled>:
+                <input name="minuto" id="minuto" value="00" disabled>:
+                <input name="segundo" id="segundo" value="00" disabled>
+            </div>
+        </div>
+        <hr>
+        <div class="botoes">
+            <button id="iniciar" class="iniciar" onclick="iniciar()">▷</button>
+            <button id="pausar" class="pausar" onclick="pausar()">II</button>
+            <button id="zerar" class="zerar" onclick="zerar()">▢</button>
+            <button id="editar" class="editar" onclick="editar()">🖍</button>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>

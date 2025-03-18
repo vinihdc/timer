@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+.audiowide-regular {
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+hr {
+    color: linear-gradient(to right, #0F172A, #1E293B);;
+    margin: 20px 70px;
+}
+
+body {
+    background: linear-gradient(to left, #0F172A, #1E293B);
+    font-family: AudioWide;
+}
+
+h1 {
+    background: #1E293B;
+    color: #F8FAFC;
+    font-size: 7rem;
+    font-weight: bold;
+    padding: auto;
+    border-radius: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    color: #E2E8F0;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 20px;
+}
+
+
+.tempo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+input {
+    font-family: "Audiowide", sans-serif;
+    background: #0F172A;
+    border-radius: 20px;
+    color: #E2E8F0;
+    font-size: 13rem;
+    height: 300px;
+    width: 400px;
+    border: outset lightslategray;
+    text-align: center;
+    outline: none;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 50px;
+}
+
+.iniciar,
+.pausar,
+.zerar,
+.editar {
+    cursor: pointer;
+    font-size: 30px;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    border: none;
+    color: black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 0.5px outset black;
+}
+
+.iniciar {
+    background: #16A34A;
+    font-weight: bolder;
+}
+
+.iniciar:hover {
+    animation: crescer 1s alternate infinite;
+    background: #166534;
+}
+
+.pausar {
+    background: #F59E0B;
+
+}
+
+.pausar:hover {
+    animation: crescer 1s alternate infinite;
+    background: #f59f0b8c;
+}
+
+.zerar {
+    background: #DC2626;
+    font-weight: bolder;
+}
+
+.zerar:hover {
+    animation: crescer 1s alternate infinite;
+    background: #991B1B;
+}
+
+.editar {
+    background: #565656;
+}
+
+.editar:hover {
+    animation: crescer 1s alternate infinite;
+    background: #565656;
+}
+
+@keyframes crescer {
+    from {
+        transform: scale(100%);
+    }
+
+    to {
+        transform: scale(110%);
+    }
+}
