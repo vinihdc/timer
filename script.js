@@ -1,64 +1,97 @@
-    function convertir() {
-        let h = parseInt(document.getElementById("hora").value) || 0;
-        let m = parseInt(document.getElementById("minuto").value) || 0;
-        let s = parseInt(document.getElementById("segundo").value) || 0;
+let editavel = false;
 
-        return (h * 3600) + (m * 60) + s;
-    }
+function convertir() {
+    let h = parseInt(document.getElementById("hora").value) || 0;
+    let m = parseInt(document.getElementById("minuto").value) || 0;
+    let s = parseInt(document.getElementById("segundo").value) || 0;
 
-    function mostrarTempo(tempo) {
-        let hora = Math.floor(tempo / 3600);
-        let minuto = Math.floor((tempo % 3600) / 60);
-        let segundo = tempo % 60;
+    return (h * 3600) + (m * 60) + s;
+}
 
-        if (hora < 10) hora = "0" + hora;
-        if (minuto < 10) minuto = "0" + minuto;
-        if (segundo < 10) segundo = "0" + segundo;
-        document.getElementById("hora").value = `${hora}`;
-        document.getElementById("minuto").value = `${minuto}`;
-        document.getElementById("segundo").value = `${segundo}`;
-    }
+function mostrarTempo(tempo) {
+    let hora = Math.floor(tempo / 3600);
+    let minuto = Math.floor((tempo % 3600) / 60);
+    let segundo = tempo % 60;
 
-    function iniciar() {
-        parar();
-        let tempoRestante = convertir();
+    if (hora < 10) hora = "0" + hora;
+    if (minuto < 10) minuto = "0" + minuto;
+    if (segundo < 10) segundo = "0" + segundo;
+    document.getElementById("hora").value = `${hora}`;
+    document.getElementById("minuto").value = `${minuto}`;
+    document.getElementById("segundo").value = `${segundo}`;
+}
 
-        intervalo = setInterval(function() {
-            if (tempoRestante > 0) {
-                tempoRestante--;
-                mostrarTempo(tempoRestante);
-            } else {
-                clearInterval(intervalo);
-                alert("Tempo esgotado!");
+function iniciar() {
+    parar();
+    let tempoRestante = convertir();
+    let alarme = document.getElementById("terminou");
+
+    intervalo = setInterval(function () {
+        if (tempoRestante > 0) {
+            tempoRestante--;
+            mostrarTempo(tempoRestante);
+        } else {
+            clearInterval(intervalo);
+            alarme.play();
+            alert("Tempo esgotado!");
+        }
+    }, 1000);
+
+}
+
+function pausar() {
+    clearInterval(intervalo)
+}
+
+function zerar() {
+    clearInterval(intervalo);
+    document.getElementById("hora").value = "00";
+    document.getElementById("minuto").value = "00";
+    document.getElementById("segundo").value = "00";
+    clearInterval(intervalo);
+    parar();
+}
+
+function editar() {
+    editavel = !editavel;
+
+    let h = document.getElementById("hora");
+    let m = document.getElementById("minuto");
+    let s = document.getElementById("segundo");
+
+    h.disabled = editavel;
+    m.disabled = editavel;
+    s.disabled = editavel;
+
+    [h, m, s].forEach(input => {
+        input.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
+
+
+            if (this.value.length === 1) {
+                this.value = this.value.padStart(2, "0");
             }
-        }, 1000);
-        
-    }
 
-    function pausar() {
-        clearInterval(intervalo)
-    }
+            if (this.value.length > 2) {
+                this.value = this.value.slice(-2);
+            }
+        });
 
-    function zerar() {
-        clearInterval(intervalo);
-        document.getElementById("hora").value = "00";
-        document.getElementById("minuto").value = "00";
-        document.getElementById("segundo").value = "00";
-        clearInterval(intervalo);
-        parar();
-    }
+        input.addEventListener("focus", function () {
+            if (this.value === "00") this.value = "";
+        });
 
-    function editar() {
-        document.getElementById("hora").disabled = false;
-        document.getElementById("minuto").disabled = false;
-        document.getElementById("segundo").disabled = false;
-    }
+        input.addEventListener("blur", function () {
+            if (this.value === "") this.value = "00";
+        });
+    });
+}
 
-    function parar() {
-        document.getElementById("hora").disabled = true;
-        document.getElementById("minuto").disabled = true;
-        document.getElementById("segundo").disabled = true;
-    }
+function parar() {
+    document.getElementById("hora").disabled = true;
+    document.getElementById("minuto").disabled = true;
+    document.getElementById("segundo").disabled = true;
+}
 
 
 
